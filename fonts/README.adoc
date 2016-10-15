@@ -1,0 +1,13 @@
+= JPDoc
+
+== このフォントについて
+
+JPDocは、日本語のドキュメントを作成する際に使用する事を目的に作成したフォントです。
+link:http://jikasei.me/[自家製フォント工房]が頒布しているlink:http://jikasei.me/font/mgenplus/[Mgen+]の一部の書体に、斜体のスタイルを追加しています。
+
+== ライセンスと著作権について
+
+* JPDocはlink:https://opensource.org/licenses/OFL-1.1[SIL Open Font License 1.1]の条件の下で自由に配布されます。
+* フォントデータに含まれる、源ノ角ゴシック由来の文字グリフの著作権はlink:http://store1.adobe.com/cfusion/store/html/index.cfm?store=OLS-JP&event=displayFontPackage&code=1967[Adobe]が所有しています。
+* フォントデータに含まれる、M+ OUTLINE FONTS 由来の文字グリフの著作権はlink:http://mplus-fonts.sourceforge.jp/[M+ FONTS PROJECT]が所有しています。
+* 上記以外の文字グリフの著作権はlink:http://jikasei.me/[自家製フォント工房]が所有しています。

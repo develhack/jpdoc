@@ -1,0 +1,19 @@
+@startuml
+skinparam defaultFontName JPDoc
+
+start
+
+if (ファイルが既に存在する) then (Yes)
+	:エラーログ出力;
+	stop
+endif
+
+:ファイル作成;
+
+while (未出力データがある) is (Yes)
+	:データレコード出力;
+endwhile
+
+stop
+
+@enduml

@@ -1,0 +1,23 @@
+@startuml
+skinparam defaultFontName JPDoc
+
+left to right direction
+actor member as "男性登録者"
+actor engineer as "エンジニア"
+actor decoy as "サクラ"
+actor bot as "ボット"
+member <|- engineer
+rectangle "婚活サイト" {
+	
+	member -- (プロフィール登録)
+	(プロフィール登録) -- decoy
+
+	member -- (メッセージ送信)
+	(メッセージ送信) -- decoy
+	(メッセージ送信) -- bot
+
+	member -- (課金)
+
+	engineer -- (スクレイピング)
+}
+@enduml

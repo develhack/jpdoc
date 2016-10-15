@@ -1,0 +1,27 @@
+blockdiag {
+
+	default_group_color = "#CCCCCC";
+
+	T1 [label = "Page. 1"];
+	T2 [label = "Page. 2"];
+	D1 [label = "Page .1"];
+	D2 [label = "Page. 2"];
+	D3 [label = "Page. 3"];
+	DS [shape = "dots"];
+	DN [label = "Page. n"];
+
+	group template {
+		label = "foo-template.pdf";
+		T1; T2;
+	}
+
+	group document {
+		label = "mydocument.pdf";
+		D1; D2; D3; DS; DN;
+	}
+
+	T1 -> D1;
+	T2 -> D2, D3, DS, DN;
+
+	T2 -> DS [style = "none"];
+}

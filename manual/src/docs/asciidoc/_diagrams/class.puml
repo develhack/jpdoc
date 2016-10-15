@@ -1,0 +1,35 @@
+@startuml
+skinparam defaultFontName JPDoc
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|-- AbstractList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class ArrayList {
+  Object[] elementData
+  size()
+}
+
+class 日本語クラス名 {
+  Object[] 日本語属性名
+}
+
+interface 日本語インターフェース名
+
+enum TimeUnit {
+  DAYS
+  HOURS
+  MINUTES
+}
+
+annotation SuppressWarnings
+
+@enduml

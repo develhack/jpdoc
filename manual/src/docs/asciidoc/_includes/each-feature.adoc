@@ -1,0 +1,97 @@
+[[each-feature]]
+== 各機能の使用方法
+
+[[theme]]
+=== テーマの使用方法
+
+<<asciidoctor-pdf,Asciidoctor PDF>> のテーマを定義する事により、ドキュメント全体のスタイルを指定出来ます。
+
+「<<settings>>」に示した``theme``に``foo``を指定した場合``foo-theme.yml``が下記の順番で検索され、最初に見つかった``foo-theme.yml``が適用されます。 +
+``foo-theme.yml``が見つからなかった場合にはエラーとなります。
+
+. ``__<サブプロジェクト>__/themes/foo-theme.yml``
+. ``themes/foo-theme.yml``
+
+なお、``theme``の指定を省略した場合は``default``が指定された場合と同等の動作（``default-theme.yml``を検索する）となります。
+
+テーマファイルの記述方法は「<<asciidoctor-pdf,Asciidoctor PDF>>」の link:https://github.com/asciidoctor/asciidoctor-pdf/blob/master/docs/theming-guide.adoc[Asciidoctor PDF Theming Guide] を参照して下さい。
+
+<<<
+
+
+[[diagram]]
+=== 図形描画の使用方法
+
+<<asciidoctor-diagram,Asciidoctor Diagram>> が対応している各種図形を使用可能ですが、<<plantuml,PlantUML>>のみ動作確認しています。
+
+PlantUMLの機能の一部を使用したUMLのサンプルを以下に示します。
+
+.シーケンス図
+plantuml::_diagrams/sequence.puml[format=svg]
+
+.ユースケース図
+plantuml::_diagrams/usecase.puml[format=svg]
+
+.クラス図
+plantuml::_diagrams/class.puml[format=svg,font=JPDoc]
+
+.アクティビティ図
+plantuml::_diagrams/activity.puml[format=svg,font=JPDoc]
+
+[IMPORTANT]
+====
+* PlantUMLを使用して図形を描画する場合には<<graphviz,Graphviz>>のインストールとパスの設定が必要です。
+* PlantUML以外を使用して図形を描画する場合には、図形の種類に応じた外部ツールのインストールとパスの設定が必要です。図形毎に必要となる外部ツールの詳細は<<asciidoctor-diagram,Asciidoctor Diagram の公式サイト>>を参照してください。
+====
+
+<<<
+
+
+[[template]]
+=== PDFテンプレートの使用方法
+
+テンプレートとなるPDFファイルをドキュメントに合成する事が出来ます。
+
+「<<settings>>」に示した``template``に``foo``を指定した場合``foo-template.pdf``が下記の順番で検索され、最初に見つかった物が適用されます。
+
+. ``__<サブプロジェクト>__/templates/foo-template.pdf``
+. ``templates/foo-template.pdf``
+
+``foo-template.pdf``が見つからなかった場合にはエラーとなります。
+
+PDFテンプレートが単一ページの場合、ドキュメントの全てのページに同一のテンプレートが合成されます。
+
+PDFテンプレートが複数のページを含む場合、PDFテンプレートの各ページがドキュメントの対応するページに合成され、ドキュメントのページ数がPDFテンプレートのページ数よりも多い場合には、PDFテンプレートの最後のページが残りの全てのページに合成されます。
+
+.PDFテンプレートのページとドキュメントのページとの対応
+blockdiag::_diagrams/template.diag[format=svg,scaledwidth=70%]
+
+[IMPORTANT]
+====
+テンプレートとの合成には<<pdftk,PDFtk>>のインストールとパスの設定が必要です。
+====
+
+
+<<<
+
+[[dynamic-template]]
+=== 動的テンプレートの使用方法
+
+テンプレートとなるSVGファイルをドキュメントに合成する事が出来ます。また、合成する際にSVGファイル中の文字列を置換する事が出来ます。
+
+「<<settings>>」に示した``template``に``foo``を指定した場合``foo-template-*.svg``のパターンにマッチするファイルが下記の順番で検索され、最初に見つかった物が適用されます。 +
+
+. ``__<サブプロジェクト>__/templates/foo-template-*.svg``
+. ``templates/foo-template-*.svg``
+
+パターンにマッチするファイルが見つからなかった場合は「<<template>>」に示した動作となります。
+
+パターンにマッチするファイルが複数見つかった場合はファイル名順に、ドキュメントの各ページに合成されます。
+
+.動的テンプレートのファイルとドキュメントのページとの対応
+blockdiag::_diagrams/dynamic-template.diag[format=svg,scaledwidth=70%]
+
+[IMPORTANT]
+====
+動的テンプレートとの合成には<<pdftk,PDFtk>>および<<inkscape,Inkscape>>のインストールとパスの設定が必要です。
+====

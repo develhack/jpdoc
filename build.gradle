@@ -1,0 +1,172 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.asciidoctor:asciidoctorj-diagram:1.5.0'
+        classpath 'org.asciidoctor:asciidoctorj-pdf:1.5.0-alpha.11'
+    }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.2.1'
+}
+
+subprojects {
+
+    apply plugin: 'org.asciidoctor.convert'
+    apply plugin: 'com.github.jruby-gradle.base'
+
+    ext.defaultAsciidoctorAttributes = [
+        'build-gradle': file('build.gradle'),
+        'encoding': 'utf-8',
+        'doctype': 'book',
+        'lang': 'ja',
+        'lsquo': '「',
+        'rsquo': '」',
+        'ldquo': '『',
+        'rdquo': '』',
+        'source-highlighter': 'rouge',
+        'toc-title': '目次',
+        'figure-caption': '図',
+        'table-caption': '表',
+        'caution-caption': '注意',
+        'important-caption': '重要',
+        'note-caption': '注',
+        'tip-caption': '補足',
+        'warning-caption': '警告',
+        'example-caption': '例',
+        'appendix-caption': '付録',
+        'manname-title': '名前',
+        'toclevels': '3',
+        'icons': 'font',
+        'chapter-label': '',
+    ]
+
+    asciidoctorj {
+        version = '1.5.4.1'
+    }
+
+    jrubyPrepare {
+        outputDir file("${rootDir}/.gems")
+    }
+
+    asciidoctor {
+
+        ext {
+            shouldFinalize = true
+            theme = 'default'
+            template = ''
+            templateValues = []
+        }
+
+        sources {
+            include '**/*.adoc'
+            exclude '**/_*/**'
+            exclude '**/_*'
+        }
+
+        logDocuments = true
+        backends = [ 'pdf' ]
+        requires = [ 'asciidoctor-diagram' ]
+
+        outputs.upToDateWhen { false }
+        gemPath = jrubyPrepare.outputDir
+        dependsOn jrubyPrepare
+    }
+
+    afterEvaluate {
+
+        tasks.asciidoctor {
+
+            doFirst {
+
+                if( theme ) {
+                    def themesDir = file("${projectDir}/themes")
+                    if( !themesDir.exists() || !file("${pdf.themesDir.path}/${theme}-theme.yml").exists() ) {
+                        themesDir = file("${rootDir}/themes")
+                    }
+                    attributes = defaultAsciidoctorAttributes + [
+                        'imagesdir': "${buildDir}/asciidoc/pdf",
+                        'pdf-stylesdir': themesDir.path,
+                        'pdf-style': theme,
+                        'pdf-fontsdir': "${rootDir}/fonts"
+                    ]
+                } else {
+                    attributes = defaultAsciidoctorAttributes + [
+                        'imagesdir': "${buildDir}/asciidoc/pdf"
+                    ]
+                }
+            }
+
+            doLast {
+
+                if( !shouldFinalize || !template ) return
+
+                def templatePdf = file("${projectDir}/templates/${template}-template.pdf")
+                if( !templatePdf.exists() ) {
+                    templatePdf = file("${rootDir}/templates/${template}-template.pdf")
+                }
+
+                if( templateValues ) {
+
+                    def templateSvgs = fileTree(dir: "${projectDir}/templates", include: "${template}-template-*.svg")
+                    if( templateSvgs.isEmpty() ) {
+                        templateSvgs = fileTree(dir: "${rootDir}/templates", include: "${template}-template-*.svg")
+                    }
+
+                    if( !templateSvgs.isEmpty() ) {
+
+                        println "Create a dinamically template using ${templateSvgs}."
+
+                        def templatePdfs = []
+                        def templateDir = file("${buildDir}/asciidoc/pdf/.template")
+                        templateDir.mkdirs()
+                        templateSvgs.sort().each { templateSvg ->
+                            def templateSvgContents = templateSvg.getText("utf-8")
+                            templateValues.each {
+                                templateSvgContents = templateSvgContents.replaceAll(/\{${it.key}\}/, it.value)
+                            }
+                            def replacedSvg = file("${templateDir.path}/${templateSvg.name}")
+                            replacedSvg.setText(templateSvgContents, "utf-8")
+                            def convertedPdf = file(replacedSvg.path.replaceAll(/\.svg$/, '.pdf'))
+                            exec {
+                                commandLine 'inkscape', '-z', '-f', replacedSvg.path, '-A', convertedPdf.path
+                            }
+                            templatePdfs.push convertedPdf.path
+                        }
+                        templatePdf = file("${templateDir.path}/${template}-template.pdf")
+                        exec {
+                            executable 'pdftk'
+                            args templatePdfs + [ 'cat', 'output', templatePdf.path ]
+                        }
+                    }
+                }
+
+                if( !templatePdf.exists() ) return
+
+                println "Finalize PDFs using ${templatePdf}."
+
+                files(tasks.asciidoctor).asFileTree.matching { 
+
+                    include '**/*.pdf'
+                    exclude '**/finalized/*'
+                    exclude '**/.template/*'
+
+                }.each {
+
+                    def from = it
+                    def to = file("${from.parent}/finalized/${from.name}")
+                    
+                    to.parentFile.mkdirs()
+                    println "Finalize ${from.path} to ${to.path}."
+                    exec {
+                        commandLine 'pdftk', from.path, 'multibackground', templatePdf.path, 'output', to.path
+                    }
+                }
+            }
+        }
+    }
+}

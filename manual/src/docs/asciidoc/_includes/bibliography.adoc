@@ -1,0 +1,46 @@
+[appendix]
+[[bibliography]]
+== 参考文献
+
+[[asciidoc]]
+*AsciiDoc User Guide* (http://www.methods.co.nz/asciidoc/userguide.html)::
+ AsciiDocのユーザーガイドです。本環境において全ての記法が使用できる訳ではありませんが、多くの記法が使用可能です。
+
+[[gradle]]
+*Gradle User Guide* (https://docs.gradle.org/current/userguide/userguide.html)::
+ Gradleのユーザーガイドです。このドキュメントではGradleの使用方法については説明していませんので、必要に応じて参照してください。
+
+[[asciidoctor]]
+*Asciidoctor Documentation* (http://asciidoctor.org/docs/)::
+ Asciidoctorの公式ドキュメントです。
+
+[[asciidoctor-gradle-plugin]]
+*Asciidoctor Gradle Plugin* (http://asciidoctor.org/docs/asciidoctor-gradle-plugin/)::
+ Asciidoctor Gradle Plugin の公式サイトです。
+
+[[asciidoctor-pdf]]
+*[GitHub] Asciidoctor PDF* (https://github.com/asciidoctor/asciidoctor-pdf)::
+ Asciidoctor PDF のリポジトリです。
+
+[[asciidoctor-diagram]]
+*Asciidoctor Diagram* (http://asciidoctor.org/docs/asciidoctor-diagram/)::
+ Asciidoctor Diagram の公式サイトです。
+
+*[GitHub] Asciidoctor* (https://github.com/asciidoctor)::
+ AsciidoctorのGitHubアカウントです。Asciidoctorに関連するプロダクトのリポジトリが登録されています。
+
+[[plantuml]]
+*PlantUML* (http://plantuml.com/)::
+PlantUMLの公式サイトです。
+
+[[graphviz]]
+*Graphviz* (http://www.graphviz.org/)::
+Graphvizの公式サイトです。
+
+[[pdftk]]
+*[PDF Labs] PDFtk* (https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/)::
+ PDFtkの公式サイトです。
+
+[[inkscape]]
+*Inkscape* (https://inkscape.org/ja/)::
+Inkscapeの公式サイトです。

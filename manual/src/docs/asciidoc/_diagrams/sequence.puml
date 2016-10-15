@@ -1,0 +1,33 @@
+@startuml
+skinparam defaultFontName JPDoc
+
+hide footbox
+autonumber
+
+actor user as "利用者"
+participant client as "クライアント\nアプリケーション"
+participant server as "サーバ\nアプリケーション"
+database db as "データベース"
+
+user -> client: データ入力
+activate client
+
+client -> server: 接続
+activate server
+server --> client: セッションID
+
+client -> server: データ送信
+
+server -> db: データ登録
+activate db
+
+db --> server: 登録件数
+deactivate db
+
+server --> client: 登録件数
+deactivate server
+
+client --> user: 登録結果
+deactivate client
+
+@enduml

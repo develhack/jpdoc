@@ -1,0 +1,59 @@
+= 日本語ドキュメント作成環境
+
+link:http://asciidoctor.org/docs/what-is-asciidoc/#what-is-asciidoc[AsciiDoc]により日本語ドキュメントを作成するための環境です。バージョン管理が容易なテキストファイルから、印刷に耐え得る日本語ドキュメントのPDFを出力する事が目標です。
+
+[[features]]
+== 提供機能
+
+=== 基本機能
+
+link:https://github.com/asciidoctor/asciidoctor-pdf[Asciidoctor PDF] が提供する機能が使用可能です。
+
+また、日本語を使用可能とするためのデフォルトのテーマが定義済みですが、デフォルトのテーマのカスタマイズおよびドキュメント毎の個別のテーマの指定が可能です。
+
+なお、日本語の太字や斜体が使用できます。
+
+=== 図形描画
+
+link:http://asciidoctor.org/docs/asciidoctor-diagram/[Asciidoctor Diagram] がサポートしている各種ツールを使用した図形描画が可能です。
+
+
+=== PDFテンプレート
+
+ロゴやウォーターマーク等を配置したPDF形式のテンプレートとの合成が可能です。
+
+
+=== 動的テンプレート
+
+SVG形式のテンプレートの一部の文字列を置換した後に、PDFテンプレートとして合成する事が可能です。
+
+[[environment]]
+== 動作環境
+
+予め下記のソフトウェアがインストールされている（パスが設定されている）必要があります。
+
+=== 必須
+
+link:http://www.oracle.com/technetwork/java/javase/downloads/index.html[Java SE]::
+ ビルドツールのlink:https://gradle.org/[Gradle]を実行するために必要です。
+
+=== 任意
+
+link:http://www.graphviz.org/[Graphviz]::
+ 図形を描画する場合に必要です。
+
+link:https://www.pdflabs.com/tools/pdftk-the-pdf-toolkit/[PDFtk]::
+ PDFテンプレートを使用する場合に必要です。
+
+link:https://inkscape.org/ja/[Inkscape]::
+ 動的テンプレートを使用する場合に必要です。
+
+[CAUTION]
+====
+リポジトリに含まれる``manual``プロジェクトをビルドするためには<<environment>>に示したソフトウェアが全て必要になります。
+====
+
+[[usage]]
+== 使用方法
+
+link:https://develhack.github.io/jpdoc/manual/manual_v1.0.pdf[利用マニュアル]を参照して下さい。

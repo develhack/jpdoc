@@ -1,0 +1,8 @@
+asciidoctor {
+    // デフォルトのテーマ（'default'）を使用するため theme は未指定
+
+    // 'develhack-template-'の接頭辞を持つ動的テンプレートを使用
+    template = 'develhack'
+    // 動的テンプレートの ${copyright} を置換
+    templateValues = [ 'copyright': 'Copyright © 2016 Develhack K.K. All Rights reserved.' ]
+}

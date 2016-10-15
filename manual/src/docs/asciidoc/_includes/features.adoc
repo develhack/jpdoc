@@ -1,0 +1,45 @@
+== 提供機能
+
+=== 基本機能
+
+<<asciidoctor-pdf,Asciidoctor PDF>>が提供する機能が使用可能です。
+
+また、日本語を使用可能とするためのデフォルトのテーマが定義済みですが、デフォルトのテーマのカスタマイズおよびドキュメント毎の個別のテーマの指定が可能です。詳細は「<<theme>>」を参照してください。
+
+なお、日本語の太字や斜体が使用できます。
+
+.日本語の書式サンプル
+[cols="^1h,4a,4a", options="header"]
+|===
+|書式 ^|日本語例 ^|英語例
+|標準 |これは 標準 の書式です。 |This is regular format.
+|太字 |これは *太字* の書式です。 |This is *bold* format.
+|斜体 |これは _斜体_ の書式です。 |This is _italic_ format.
+|太字斜体 |これは *_太字斜体_* の書式です。 |This is *_bold and italic_* format.
+|===
+
+[IMPORTANT]
+====
+既知の問題として、日本語等のマルチバイト文字を使用すると以下の警告が出力されます。
+
+ warning: regexp match /.../n against to UTF-8 string
+
+詳細はlink:https://github.com/asciidoctor/asciidoctor-pdf/issues/69[Asciidoctor PDFのIssues]を参照してください。
+====
+
+=== 図形描画
+
+<<asciidoctor-diagram,Asciidoctor Diagram>> がサポートしている各種ツールを使用した図形描画が可能です。 +
+使用方法は「<<diagram>>」を参照してください。
+
+
+=== PDFテンプレート
+
+ロゴやウォーターマーク等を配置したPDF形式のテンプレートとの合成が可能です。 +
+使用方法は「<<template>>」を参照してください。
+
+
+=== 動的テンプレート
+
+SVG形式のテンプレートの一部の文字列を置換した後に、PDFテンプレートとして合成する事が可能です。 +
+使用方法は「<<dynamic-template>>」を参照してください。

@@ -1,0 +1,44 @@
+:revision: 1.0
+= 日本語ドキュメント作成環境 : 利用マニュアル {revision} 版
+
+:!sectnums:
+:!pagenums:
+
+[preface]
+== 改版履歴
+
+[cols="^3,^7,40a", options="header"]
+|===
+|版数 |改版日 
+^|改版内容
+
+|1.0 | 2016/10/15
+|初版
+|===
+
+<<<
+
+:sectnums:
+:pagenums:
+
+
+include::_includes/introduction.adoc[]
+
+<<<
+
+
+include::_includes/features.adoc[]
+
+<<<
+
+
+include::_includes/basic-usage.adoc[]
+
+<<<
+
+
+include::_includes/each-feature.adoc[]
+
+<<<
+
+include::_includes/bibliography.adoc[]

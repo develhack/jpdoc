@@ -1,0 +1,185 @@
+font:
+  catalog:
+    "JPDoc":
+      normal: jpdoc-regular.ttf
+      bold: jpdoc-bold.ttf
+      italic: jpdoc-italic.ttf
+      bold_italic: jpdoc-bold-italic.ttf
+  fallbacks:
+    - "JPDoc"
+base:
+  align: justify
+  font_color: #000000
+  font_family: "JPDoc"
+  font_size: 10.5
+  line_height_length: 12
+  line_height: $base_line_height_length / $base_font_size
+  font_size_large: round($base_font_size * 1.25)
+  font_size_small: round($base_font_size * 0.85)
+  font_size_min: $base_font_size * 0.75
+  font_style: normal
+  border_color: #EEEEEE
+  border_radius: 4
+  border_width: 0.5
+vertical_rhythm: $base_line_height_length
+horizontal_rhythm: $base_line_height_length
+vertical_spacing: $vertical_rhythm
+link:
+  font_color: #000099
+literal:
+  font_family: "JPDoc"
+  background_color: #F5F5F5
+  border_color: #CCCCCC
+  border_radius: $base_border_radius
+  border_width: 0.75
+heading:
+  # font_color: $base_font_color
+  # font_family: $base_font_family
+  font_style: bold
+  h1_font_size: floor($base_font_size * 2.6)
+  h2_font_size: floor($base_font_size * 2.15)
+  h3_font_size: round($base_font_size * 1.7)
+  h4_font_size: $base_font_size_large
+  h5_font_size: $base_font_size
+  h6_font_size: $base_font_size_small
+  line_height: 1.2
+  margin_top: $vertical_rhythm * 0.2
+  margin_bottom: $vertical_rhythm * 0.8
+block:
+  margin_top: 0
+  margin_bottom: $vertical_rhythm
+caption:
+  align: center
+  font_style: normal
+  margin_inside: $vertical_rhythm / 3
+  margin_outside: 0
+lead:
+  font_size: $base_font_size_large
+  line_height: 1.4
+abstract:
+  font_size: $lead_font_size
+  line_height: $lead_line_height
+  font_style: italic
+admonition:
+  border_color: $base_border_color
+  border_width: $base_border_width
+  padding: [0, $horizontal_rhythm, 0, $horizontal_rhythm]
+blockquote:
+  font_color: $base_font_color
+  font_size: $base_font_size_large
+  border_color: $base_border_color
+  border_width: 5
+  padding: [$vertical_rhythm / 2, $horizontal_rhythm, $vertical_rhythm / -2, $horizontal_rhythm + $blockquote_border_width / 2]
+  cite_font_size: $base_font_size_small
+  cite_font_color: #999999
+code:
+  font_color: $base_font_color
+  font_family: $literal_font_family
+  font_size: ceil($base_font_size)
+  padding: $code_font_size
+  line_height: 1.25
+  background_color: #F5F5F5
+  border_color: #CCCCCC
+  border_radius: $base_border_radius
+  border_width: 0.75
+conum:
+  font_family: "JPDoc"
+  font_color: $literal_font_color
+  font_size: $base_font_size
+  line_height: 4 / 3
+example:
+  border_color: $base_border_color
+  border_radius: $base_border_radius
+  border_width: 0.75
+  background_color: transparent
+  # FIXME reenable margin bottom once margin collapsing is implemented
+  padding: [$vertical_rhythm, $horizontal_rhythm, 0, $horizontal_rhythm]
+image:
+  align: center
+prose:
+  margin_top: 0
+  margin_bottom: $vertical_rhythm
+sidebar:
+  border_color: $page_background_color
+  border_radius: $base_border_radius
+  border_width: $base_border_width
+  background_color: eeeeee
+  padding: [$vertical_rhythm, $vertical_rhythm * 1.25, 0, $vertical_rhythm * 1.25]
+  title:
+    align: center
+    font_color: $heading_font_color
+    font_family: $heading_font_family
+    font_size: $heading_h4_font_size
+    font_style: $heading_font_style
+thematic_break:
+  border_color: $base_border_color
+  border_style: solid
+  border_width: $base_border_width
+  margin_top: $vertical_rhythm * 0.5
+  margin_bottom: $vertical_rhythm * 1.5
+description_list:
+  term_font_style: normal
+  term_spacing: $vertical_rhythm / 4
+  description_indent: $horizontal_rhythm * 1.25
+outline_list:
+  indent: $horizontal_rhythm * 1.5
+  item_spacing: $vertical_rhythm / 2
+table:
+  background_color: $page_background_color
+  head_background_color: #000000
+  head_font_color: #FFFFFF
+  head_font_style: bold
+  even_row_background_color: f9f9f9
+  #odd_row_background_color: <hex value>
+  foot_background_color: #F0F0F0
+  border_color: #DDDDDD
+  border_width: $base_border_width
+  # HACK accounting for line-height
+  cell_padding: [3, 3, 6, 3]
+toc:
+  dot_leader_color: #DDDDDD
+  indent: $horizontal_rhythm
+  line_height: 1.4
+header:
+  font_size: $base_font_size_large
+  font_color: #666666
+  height: $base_line_height_length * 4
+  line_height: 1
+  vertical_align: center
+  recto_content:
+    left: '{chapter-title}'
+  verso_content:
+    left: $header_recto_content_left
+footer:
+  font_size: $base_font_size_small
+  font_color: $base_font_color
+  height: $base_line_height_length * 4
+  vertical_align: top
+  recto_content:
+    center: '{page-number} / {page-count}'
+  verso_content:
+    center: $footer_recto_content_center
+page:
+  background_color: #FFFFFF
+  layout: portrait
+  margin: [$header_height + $base_line_height_length, 0.3in, $footer_height, 0.3in]
+  size: A4
+title_page:
+  align: center
+  background_color: #FFFFFF
+  # logo:
+  #   align: center
+  #   top: 20%
+  #   image: image:thincacloud.svg[width=256]
+  title:
+    top: 40%
+    font_size: 42
+    line_height: 1.2
+  subtitle:
+    font_size: 24
+    line_height: 1
+  authors:
+    margin_top: $base_font_size * 1.25
+    font_size: $base_font_size_large
+  revision:
+    margin_top: $base_font_size * 1.25
